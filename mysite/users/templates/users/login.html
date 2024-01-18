@@ -1,0 +1,31 @@
+<!--登录页-->
+{% extends 'users/base.html' %}
+
+{% block head %}
+    <title>登录页面</title>
+{% endblock head %}
+
+{% block content %}
+    <div class="box">
+        <center>
+            <h1 class="is-uppercase has-text-centered has-text-weight-bold">开始愉悦的博客之旅吧！
+                <br><span class="tag">登录</span>
+            </h1>
+            <hr class="dropdown-divider">
+        </center>
+        <form action="" method="post">
+            {% csrf_token %}  <!--忽略django自带的跨站访问限制-->
+            <center>
+                登录！登录！冲冲冲！<br><br>
+        <!--    <label for="id_username">用户名：</label>-->
+        <!--    <input type="text" name="username" id="id_username">-->
+        <!--    <label for="id_password">密码：</label>-->
+        <!--    <input type="password" name="password" id="id_password">-->
+                {{ form.as_p }}
+                <input type="submit" style="margin-top: 1em;urnd" class="button is-link is-fullwidth" value="提交">
+            </center>
+        </form>
+
+    </div>
+{% endblock content %}
+
