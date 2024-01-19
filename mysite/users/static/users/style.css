@@ -1,0 +1,46 @@
+body{
+/*background-color: #000000;*/
+    background-image: url('../users/images/background.jpeg'); /* 设置背景图片的路径 */
+    background-repeat: no-repeat;
+    display: block;
+    background-position:center;
+    background-size:cover;
+
+}
+
+
+.box {
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px #888888;
+  opacity: 0.85; /* 设置不透明度为70% */
+}
+
+.card {
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px #888888;
+  opacity: 0.85; /* 设置不透明度为70% */
+}
+
+nav {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  opacity: 0.85;
+  padding-top: 10px;
+  z-index: 100
+  overflow: auto;
+  /* 其他导航栏样式 */
+}
+
+.image-container {
+  width: 96px; /* 设置容器宽度 */
+  height: 96px; /* 设置容器高度 */
+  border-radius: 50%; /* 将容器设置为圆形 */
+}
+
+.image-container img {
+  width: 96px; /* 图片宽度与容器相同 */
+  height: 96px; /* 图片高度自适应 */
+  object-fit: cover;
+}

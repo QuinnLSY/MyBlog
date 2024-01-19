@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User  # django内置的user模型，痛过一对一关联关系位默认的user扩展用户数据
+from django.utils import timezone
 # Create your models here.
 
 """ 用户在站内信息模型 """
@@ -12,6 +13,8 @@ class UserProfile(models.Model):
     )
     owner = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='用户')
     nick_name = models.CharField('昵称', max_length=23, blank=True, default="")
+    desc = models.TextField('个人简介', max_length=200, blank=True, default='平平无奇的咸鱼')
+    character = models.CharField('个性签名', max_length=100, blank=True, default='还没想好！')
     birthday = models.DateField('生日', null=True, blank=True)
     gender = models.CharField('性别', max_length=6, choices=USER_GENDER_TYPE, default='male')
     address = models.CharField('地址', max_length=100, blank=True, default='')

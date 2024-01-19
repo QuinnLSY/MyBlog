@@ -2,6 +2,8 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from users.models import UserProfile
+
 """登录页面表单，view.py中login_view调用"""
 
 
@@ -58,3 +60,41 @@ class RegisterForm(forms.ModelForm):
         if password != password1:
             raise forms.ValidationError('两次输入的密码不一致，请修改！')
         return password1
+
+
+""" 忘记密码表单"""
+
+
+class ForgetPwdForm(forms.Form):
+    email = forms.EmailField(label='请填写邮箱', min_length=4, widget=forms.EmailInput(attrs={
+        'class': 'input', 'placeholder': '请填写邮箱'
+    }))
+
+
+""" 修改密码表单 """
+
+
+class ModifyPwdForm(forms.Form):
+    password = forms.CharField(label='修改密码', min_length=6, widget=forms.PasswordInput(attrs={
+            'class': 'input', 'placeholder': '请输入新密码'
+        }))
+
+
+class UserForm(forms.ModelForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={
+        'class': 'input', 'disabled': 'disabled'
+    }))
+
+    class Meta:
+        model = User
+        fields = ('email',)
+
+
+class UserProfileForm(forms.ModelForm):
+    """Form definition for UserInfo."""
+
+    class Meta:
+        """Meta definition for UserInfoform."""
+
+        model = UserProfile
+        fields = ('nick_name', 'desc', 'character', 'birthday', 'gender', 'address', 'image')

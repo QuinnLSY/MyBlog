@@ -1,0 +1,40 @@
+<!--登录页-->
+{% extends 'users/base.html' %}
+
+{% block head %}
+    <title>找回密码</title>
+{% endblock head %}
+
+{% block content %}
+    <div class="box">
+        <center>
+            <h1 class="is-uppercase has-text-centered has-text-weight-bold">巴嘎！怎么能忘了密码呢T^T！
+                <br><span class="tag">找回密码</span>
+            </h1>
+            <hr class="dropdown-divider">
+        </center>
+        <form action="" method="post">
+            {% csrf_token %}  <!--忽略django自带的跨站访问限制-->
+            <center>
+                找回！找回！快快快！<br><br>
+        <!--    <label for="id_username">用户名：</label>-->
+        <!--    <input type="text" name="username" id="id_username">-->
+        <!--    <label for="id_password">密码：</label>-->
+        <!--    <input type="password" name="password" id="id_password">-->
+                {{ form.as_p }}
+                {{ form.errors }}
+                <input type="submit" style="margin-top: 1em;urnd" class="button is-link is-fullwidth" value="提交">
+            </center>
+        </form>
+
+    </div>
+<!--    <script>-->
+<!--&lt;!&ndash;    在这里判断页面内容是否包含特定的成功消息，然后进行跳转&ndash;&gt;-->
+<!--        if (document.body.innerText.includes('邮箱还未注册，请前往注册！')) {-->
+<!--            setTimeout(function() {-->
+<!--            window.location.href = "/users/register.html"; // 在这里设置要跳转的页面地址-->
+<!--                }, 3000); // 3000毫秒即3秒-->
+<!--            }-->
+<!--    </script>-->
+{% endblock content %}
+
