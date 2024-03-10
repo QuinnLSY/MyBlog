@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-q=@$!=qd44)k8=g_usnk-x$i(=zf_a5o(%2v7n^$$rr@cg09kx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 AUTHENTICATION_BACKENDS = (
@@ -32,11 +32,11 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
+    'django.contrib.admin',  # -- 管理员站点
+    'django.contrib.auth',   # -- 认证授权系统。
+    'django.contrib.contenttypes',  # -- 内容类型框架。
+    'django.contrib.sessions',  # -- 会话框架。
+    'django.contrib.messages',  # -- 消息框架。
     'django.contrib.staticfiles',  # 管理静态文件
     'blog.apps.BlogConfig',  # 引用blog对象
     'users.apps.UsersConfig',  # 引用用户类对象-用户中心

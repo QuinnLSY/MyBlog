@@ -168,14 +168,23 @@ def logout_view(request):
 @login_required(login_url='users:login')   # 登录之后允许访问
 def editor_users(request):
     user = User.objects.get(id=request.user.id)
+    # 获取当前用户，User在model.py的UserProfile中定义的owner，在此.py import后可以获取用户
     if request.method == "POST":
         try:
             userprofile = user.userprofile
-            form = UserForm(request.POST, instance=user)
-            user_profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)  # 向表单填充默认数据
+
+            print(userprofile)
+            print(user)# 获取提交的用户信息，userprofile是model.py的UserProfile小写，如果不存在会引发错误，
+            form = UserForm(request.POST, instance=user)  # 获取用户，就是注册时的邮箱，instance默认显示原有数据
+            user_profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)  # 向表单填刚获取的用户数据，FILES是文件数据，因为我们有一个头像文件
+            print(form.is_valid())
+            print(form)
             if form.is_valid() and user_profile_form.is_valid():
                 form.save()
                 user_profile_form.save()
+                print("form errors:", form.errors)
+                print("user_profile_form.errors:", user_profile_form.errors)
+
                 return redirect('users:user_profile')
         except UserProfile.DoesNotExist:   # 这里发生错误说明userprofile无数据
             form = UserForm(request.POST, instance=user)       # 填充默认数据 当前用户
@@ -184,7 +193,7 @@ def editor_users(request):
                 form.save()
                 # commit=False 先不保存，先把数据放在内存中，然后再重新给指定的字段赋值添加进去，提交保存新的数据
                 new_user_profile = user_profile_form.save(commit=False)
-                new_user_profile.owner = request.user
+                new_user_profile.user = request.user
                 new_user_profile.save()
 
                 return redirect('users:user_profile')

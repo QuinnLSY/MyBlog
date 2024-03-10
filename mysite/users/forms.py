@@ -97,4 +97,10 @@ class UserProfileForm(forms.ModelForm):
         """Meta definition for UserInfoform."""
 
         model = UserProfile
-        fields = ('nick_name', 'desc', 'character', 'birthday', 'gender', 'address', 'image')
+        fields = ['nick_name', 'desc', 'character', 'birthday', 'gender', 'address', 'image']
+        widgets = {
+            'birthday': forms.SelectDateWidget()
+        }
+
+
+

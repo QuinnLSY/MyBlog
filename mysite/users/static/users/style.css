@@ -1,9 +1,9 @@
 body{
 /*background-color: #000000;*/
-    background-image: url('../users/images/background.jpeg'); /* 设置背景图片的路径 */
+    background-image:  url('../users/images/background.jpeg'); url('../users/images/logo.png');/* 设置背景图片的路径 */
     background-repeat: no-repeat;
     display: block;
-    background-position:center;
+    background-position:center, bottom right;
     background-size:cover;
 
 }

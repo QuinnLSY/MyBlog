@@ -17,12 +17,20 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from utils.upload import upload_file   # 富文本编辑器上传图片方法
 
 # 网页链接中显示的分类名：https://xxxx/users/login.html
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls'))  # 引入include方法，引入users.urls文件
+    path('users/', include('users.urls')),  # 引入include方法，引入users.urls文件
+    path('', include('blog.urls')),
+    path('uploads/', upload_file, name='uploads')   # 上传图片url
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-
+# 配置用户上传文件url
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+admin.site.site_header = "知识库的管理后台"
+admin.site.index_title = "知识库管理后台"
+admin.site.site_title = "知识库管理员登陆了"
